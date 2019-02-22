@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <html lang="en">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -9,29 +10,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../static/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/static/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="../static/assets/css/fonts.googleapis.com.css" />
+		<link rel="stylesheet" href="/static/assets/css/fonts.googleapis.com.css" />
 
 		<!-- ace styles -->
-		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/static/assets/css/ace.min.css" />
 
 		<!--[if lte IE 9]>
-        <link rel="stylesheet" href="../static/assets/css/ace-part2.min.css"/>
+        <link rel="stylesheet" href="/static/assets/css/ace-part2.min.css"/>
         <![endif]-->
-		<link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/static/assets/css/ace-rtl.min.css" />
 
 		<!--[if lte IE 9]>
-        <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css"/>
+        <link rel="stylesheet" href="/static/assets/css/ace-ie.min.css"/>
         <![endif]-->
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
 		<!--[if lte IE 8]>
-        <script src="../static/assets/js/html5shiv.min.js"></script>
-        <script src="../static/assets/js/respond.min.js"></script>
+        <script src="/static/assets/js/html5shiv.min.js"></script>
+        <script src="/static/assets/js/respond.min.js"></script>
         <![endif]-->
 	</head>
 
@@ -67,14 +68,14 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input type="text" id="user_name" name="user_name" class="form-control" placeholder="Username" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input type="password" id="password" name="password" class="form-control" placeholder="Password" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
@@ -87,9 +88,9 @@
 															<span class="lbl"> Remember Me</span>
 														</label>
 
-														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														<button type="button" onclick="login()" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">Login</span>
+															<span class="bigger-110" >Login</span>
 														</button>
 													</div>
 
@@ -295,6 +296,32 @@
 				$(target).addClass('visible');//show target
 			 });
 			});
+
+
+			function login(){
+			    var user_name = $('#user_name').val();
+			    var password = $('#password').val();
+
+			    $.ajax({
+					url:'/toLogin',
+					data:{
+					    user_name:user_name,
+						password:password
+					},
+					type:'post',
+					dataType:'json',
+					success:function(data){
+						if(data.code == 1000){
+						    window.location.href = "/index";
+						} else {
+							alert(data.message);
+						}
+					},
+					error:function(error){
+                        console.log(error);
+					}
+				})
+			}
 			
 			
 			

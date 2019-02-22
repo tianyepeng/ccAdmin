@@ -1,5 +1,10 @@
 server:
     port: 8080
+    tomcat:
+        uri-encoding: UTF-8
+    jsp-servlet:
+        init-parameters:
+            development: true
 
 spring:
     datasource:
@@ -11,7 +16,7 @@ spring:
             filters: stat
             driver-class-name: com.mysql.jdbc.Driver
             #基本属性
-            url: jdbc:mysql://localhost:3306/my-test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+            url: jdbc:mysql://104.243.25.61:3306/master?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
             username: root
             password: root
             #配置初始化大小/最小/最大
@@ -32,17 +37,13 @@ spring:
             pool-prepared-statements: false
             max-pool-prepared-statement-per-connection-size: 20
 
-    thymeleaf:
-      prefix: classpath:/templates/
-      cache: false
-      check-template-location: true
-      content-type: text/html
-      enabled: true
-      encoding: UTF-8
-      mode: HTML5
-      suffix: .html
+
     mvc:
       static-path-pattern: /static/**
+      view:
+        prefix: /WEB-INF/page/
+        suffix: .jsp
+
 
 
 ## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别

@@ -13,7 +13,7 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://104.243.25.61:3306/my-test?useUnicode=true&amp;characterEncoding=utf-8&amp;utoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://104.243.25.61:3306/master?useUnicode=true&amp;characterEncoding=utf-8&amp;utoReconnect=true&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="root">
         </jdbcConnection>
